@@ -1,7 +1,8 @@
-FROM debian:bullseye
+FROM debian:trixie-slim
 
 # Install build dependencies
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
   bc \
   bison \
   build-essential \
@@ -12,7 +13,9 @@ RUN apt-get update && apt-get install -y \
   libc6-dev \
   libncurses5-dev \
   libssl-dev \
-  kmod
+  kmod && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # Cross compile for 32bit arm
 ENV CROSS_COMPILE=arm-linux-gnueabihf-

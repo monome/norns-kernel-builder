@@ -32,7 +32,7 @@ fi
 
 # Store and print kernelrease
 make kernelrelease
-KERNEL_VERSION=$(make kernelrelease | grep "^[45].")
+KERNEL_VERSION=$(make kernelrelease | grep "^[456].")
 echo "Building kernel ${KERNEL_VERSION}"
 
 # Build everything
